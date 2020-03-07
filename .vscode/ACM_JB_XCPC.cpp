@@ -40,6 +40,10 @@ void update(int pos,int v,int l ,int r, int rt)
     push_up(rt);
 
 }
+void query(int )
+{
+    
+}
 int n, x;
 int main()
 {
