@@ -6,7 +6,6 @@
 #define IOS {ios::sync_with_stdio(false);cin.tie(0);}
 
 using namespace std;
-
 const int maxn = 1e5 + 5;
 int a[maxn], d[maxn << 2];
 void push_up(int rt)
