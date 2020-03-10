@@ -6,18 +6,53 @@
 #define IOS {ios::sync_with_stdio(false);cin.tie(0);}
 
 using namespace std;
-int N;
+
+int n, row;
 char ch;
 int main()
 {
    IOS
-   cin >> N >> ch;
-   for(int i = 1; i <= N; i++)
+   scanf("%d %c", &n, &ch);
+   for(int i = 0; i < n; i++)
    {
-       cout << ch << " ";
-       int n = (n + 1) * 2; 
-       int m = n / 2;
+       if((2 * i * (i + 2) + 1) > n)
+       {
+           row = i - 1;
+           break;
+       } 
+   } 
+   //cout << row << endl;
+   for(int i = row; i >= 1; i--)
+   {
+       for(int j = row - i; j >= 1; j--)
+       {
+           printf(" ");
+       }
+       for(int k = i * 2 + 1; k >= 1; k--)
+       {
+           printf("%c", ch);
+       }
+       printf("\n");
    }
-   system("pause");
+   for(int i = 1; i <= row; i++)
+   {
+       printf(" ");
+   }
+   printf("%c\n", ch);
+   for(int i = 1; i <= row; i++)
+   {
+       for(int j = row - i; j >= 1; j--)
+       {
+           printf(" ");
+       }
+       for(int k = i * 2 + 1; k >= 1; k--)
+       {
+           printf("%c", ch);
+       }
+       printf("\n");
+   }
+   int x = 2 * row * (row + 2) + 1;
+   printf("%d\n", n - x);
+   //system("pause");
    return 0;
 }
