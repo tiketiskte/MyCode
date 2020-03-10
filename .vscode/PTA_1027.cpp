@@ -12,6 +12,7 @@ char ch;
 int main()
 {
    IOS
+   //sjysfj
    scanf("%d %c", &n, &ch);
    for(int i = 0; i < n; i++)
    {
