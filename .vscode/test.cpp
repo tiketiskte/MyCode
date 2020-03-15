@@ -54,5 +54,3 @@ void InsertionSort(int * numList, int arrayLength)
         numList[j] = temp;
     }
 }
-
-
