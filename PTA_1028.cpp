@@ -3,10 +3,11 @@
 * Author : tiketiskte
 */
 #include <bits/stdc++.h>
-#define IOS{ios::sync_with_stdio(false); cin.tie(0);}
+#define IOS {ios::sync_with_stdio(false);cin.tie(0);}
 #define INF 0x3f3f3f3f
 
 /* const int maxn = 1e5 + 5; */
+
 using namespace std;
 int n;
 
@@ -36,10 +37,10 @@ int main()
             }
         }
     }
-    cout << cnt << " ";
+    cout << cnt;
     if (cnt != 0)
     {
-        cout << minname << " " << maxname << endl;
+        cout << " " << minname << " " << maxname << endl;
     }
     //system("pause");
     return 0;
