@@ -7,7 +7,7 @@
 using namespace std;
 
 
-#define ARRAYLENGTH 1000000
+#define ARRAYLENGTH 100
 int nums1[ARRAYLENGTH];
 
 void InsertionSort(int * nums, int arrayLength);

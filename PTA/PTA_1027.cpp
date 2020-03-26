@@ -53,6 +53,6 @@ int main()
    }
    int x = 2 * row * (row + 2) + 1;
    printf("%d\n", n - x);
-   //system("pause");
+   system("pause");
    return 0;
 }
