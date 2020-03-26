@@ -7,20 +7,11 @@
 #define INF 0x3f3f3f3f
 
 using namespace std;
-const int maxn = 1e5 + 5;
-vector<int>edge[maxn];
-int ans[maxn];
-int n, u, v;
+
 int main()
 {
    IOS
-   cin >> n;
-   for(int i = 1; i < n; i++) {
-      cin >> u >> v;
-      edge[u].push_back(i);
-      edge[v].push_back(i);
-   }
-   for()
+   int n, arr[maxn]
    system("pause");
    return 0;
 }
