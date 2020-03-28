@@ -63,5 +63,9 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "valarray": "cpp"
-    }
+    },
+    "cSpell.words": [
+        "Arial",
+        "strftime"
+    ]
 }
