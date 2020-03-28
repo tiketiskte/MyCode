@@ -37,8 +37,6 @@ def main():
     turtle.fd(40)
     turtle.write('是', font=('Arial', 18, 'normal'))
     turtle.fd(40)
-    turtle.write('臭', font=('Arial', 18, 'normal'))
-    turtle.fd(40)
     turtle.write('猪', font=('Arial', 18, 'normal'))
     turtle.fd(40)
     turtle.hideturtle()
