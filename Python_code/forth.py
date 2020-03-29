@@ -34,3 +34,20 @@ print(guess)
 if guess == 99:
     print("hhh~")
  """
+ans = 0
+for i in range(1, 967):
+    #print(i, end= ',')
+    if i % 2 == 1:
+        ans += i
+    else:
+        ans -= i
+print(ans)
+""" s = 0
+count = 1
+while count <=966:
+    if count%2 == 0:
+        s -= count
+    else:
+        s += count
+    count += 1
+print(s) """
