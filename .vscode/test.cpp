@@ -1,125 +1,75 @@
+/**
+* Copyright(c)
+* Author : tiketiskte
+*/
+#include <bits/stdc++.h>
+#define IOS {ios::sync_with_stdio(false);cin.tie(0);}
+#define INF 0x3f3f3f3f
 
-
-#include<iostream>
-#include<stdio.h>
-#include<time.h>
-#include <stdlib.h>
 using namespace std;
 
-
-#define ARRAYLENGTH 100
-int nums1[ARRAYLENGTH];
-
-void InsertionSort(int * nums, int arrayLength);
-
-void MergeSort(int * nums, int p, int r);
-
-void Merge(int * nums1, int p, int q, int r);
-
-
-int main(int argc, char* argv[])
-{
-	for (int i = 0; i < ARRAYLENGTH; i++)
-	{
-		nums1[i] = rand() % 10000;
-	}
-	cout << "arraylength = " << ARRAYLENGTH << endl;
-	cout << "Before Sorting" << endl;
-
-	cout << endl;
-	clock_t startTime1 = clock();
-	InsertionSort(nums1, ARRAYLENGTH);
-	clock_t endTime1 = clock();
-
-	cout << "Running Time for Insertion Sort is " << (endTime1 - startTime1)<< endl;
-
-	cout << endl;
-	cout << "After Insertion Sorting" << endl;
-
-
-	for (int i = 0; i < ARRAYLENGTH; i++)
-	{
-		nums1[i] = rand() % 10000;
-	}
-	/* for (int i = 0; i < ARRAYLENGTH; i++)
-	{
-		cout << nums1[i] << " ";
-	}
-	cout << endl; */
-
-	clock_t startTime2 = clock();
-	MergeSort(nums1, 0, ARRAYLENGTH);
-
-	/* for (int i = 0; i < ARRAYLENGTH; i++)
-	{
-		cout << nums1[i] << " ";
-	}
-	cout << endl; */
-
-	clock_t endTime2 = clock();
-	cout << "Running Time for Merge Sort is " << (endTime2 - startTime2)<< endl;
-
-
-	cout << endl;
-	cout << "After Merge Sorting" << endl;
-	system("pause");
-	getchar();
+const int maxn = 100;
+int a[maxn];
+int Max3( int A, int B, int C )
+{ /* 返回3个整数中的最大值 */
+    return A > B ? A > C ? A : C : B > C ? B : C;
 }
-
-void InsertionSort(int * numList, int arrayLength)
-{
-	int i,j,k;
-	for(i=0;i<ARRAYLENGTH;i++)
-	{
-		for(j=i;j>0;j--)
-		{
-			if(numList[j]<numList[j-1])
-			{
-				k=numList[j];
-				numList[j]=numList[j-1];
-				numList[j-1]=k;
-			}
-		}
-	}
-	// your code here
+ 
+int DivideAndConquer( int List[], int left, int right )
+{ /* 分治法求List[left]到List[right]的最大子列和 */
+    int MaxLeftSum, MaxRightSum; /* 存放左右子问题的解 */
+    int MaxLeftBorderSum, MaxRightBorderSum; /*存放跨分界线的结果*/
+ 
+    int LeftBorderSum, RightBorderSum;
+    int center, i;
+ 
+    if( left == right )  { /* 递归的终止条件，子列只有1个数字 */
+        if( List[left] > 0 )  return List[left];
+        else return 0;
+    }
+ 
+    /* 下面是"分"的过程 */
+    center = ( left + right ) / 2; /* 找到中分点 */
+    /* 递归求得两边子列的最大和 */
+    MaxLeftSum = DivideAndConquer( List, left, center );
+    MaxRightSum = DivideAndConquer( List, center+1, right );
+ 
+    /* 下面求跨分界线的最大子列和 */
+    MaxLeftBorderSum = 0; LeftBorderSum = 0;
+    for( i=center; i>=left; i-- ) { /* 从中线向左扫描 */
+        LeftBorderSum += List[i];
+        if( LeftBorderSum > MaxLeftBorderSum )
+            MaxLeftBorderSum = LeftBorderSum;
+    } /* 左边扫描结束 */
+ 
+    MaxRightBorderSum = 0; RightBorderSum = 0;
+    for( i=center+1; i<=right; i++ ) { /* 从中线向右扫描 */
+        RightBorderSum += List[i];
+        if( RightBorderSum > MaxRightBorderSum )
+            MaxRightBorderSum = RightBorderSum;
+    } /* 右边扫描结束 */
+ 
+    /* 下面返回"治"的结果 */
+    return Max3( MaxLeftSum, MaxRightSum, MaxLeftBorderSum + MaxRightBorderSum );
 }
-
-void MergeSort(int * numList, int p, int r)
-{
-	int q;
-    if(p<r)
-	{
-        q=(p+r)/2;
-		MergeSort(numList,p,q);
-		MergeSort(numList,q+1,r);
-		Merge(numList,p,q,r);
-	}
-	// your code here
+ 
+int MaxSubseqSum3( int List[], int N )
+{ /* 保持与前2种算法相同的函数接口 */
+    return DivideAndConquer( List, 0, N-1 );
 }
-
-void Merge(int * nums1, int p, int q, int r)
+int main()
 {
-	int n1 = q - p + 1;
-	int n2 = r - q;
-	int * nums2 = new int[n1 + 1];
-	int * nums3 = new int[n2 + 1];
-	int i,j,k;
-	for(i=0;i<n1;i++){
-        nums2[i]=nums1[p+i];
-    }
-    for(j=0;j<n2;j++){
-        nums3[j]=nums1[q+j+1];
-    }
-	nums2[n1]=10000;
-    nums3[n2]=10000;
-    i=0;
-    j=0;
-    for(k=p;k<=r;k++){
-        if(nums2[i]<=nums3[j]){
-            nums1[k]=nums2[i++];
-        }else{
-            nums1[k]=nums3[j++];
-        }
-    }
-	// your code here
+   IOS
+   
+   int n;
+   cin >> n;
+   for(int i = 0; i < n; i++)
+   {
+       cin >> a[i];
+   }
+   int ans = MaxSubseqSum3(a, n);
+   cout << ans << endl;
+   system("pause");
+
+   return 0;
 }
