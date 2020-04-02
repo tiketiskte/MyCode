@@ -11,7 +11,7 @@ w.to_file("firstpicture.png") """
 import jieba
 import wordcloud
 from imageio import imread
-mask = imread("bitlogo.png")
+mask = imread("Python_code/Python_learn_basic/test.jpg") #写你的文件的路径！！！易错!
 f = open("Python_code/Python_learn_basic/关于实施乡村振兴战略的意见.txt", "r", encoding = 'utf-8')
 t = f.read()
 f.close()
