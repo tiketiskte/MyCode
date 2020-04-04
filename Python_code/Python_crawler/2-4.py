@@ -7,8 +7,11 @@ soup = BeautifulSoup(demo, 'html.parser')
 #print(soup.prettify())
 """ print(soup.head)
 print(soup.head.contents) """ #一个列表类型
-for parent in soup.a.parents:
+""" for parent in soup.a.parents:
     if parent is None:
         print(parent)
     else:
-        print(parent.name)
+        print(parent.name) """
+#解析文本
+for link in soup.find_all('a'):
+    print(link.get('href'))
