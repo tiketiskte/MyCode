@@ -10,17 +10,29 @@
 using namespace std;
 
 int t;
-vector<string>v;
+vector<string> v;
+string temp;
 int main()
 {
    IOS
    cin >> t;
    while(t--) {
-       for(int i = 1; i <= 9; i++) {
-           cin >> v[i];
+       for(int i = 0; i < 9; i++) {
+           cin >> temp;
+           v.push_back(temp);
        }
-       
+       for(auto i: v) {
+          for(auto j: i) {
+              if(v[i][j] == '2') {
+
+              }
+          }
+       }
+       for(int i = 0; i < 9; i++) {
+           cout << v[i] << endl;
+       }
+       v.clear();
    }
-   system("pause");
+//    system("pause");
    return 0;
 }

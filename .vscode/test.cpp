@@ -8,64 +8,46 @@
 #define INF 0x3f3f3f3f
 
 using namespace std;
-const int maxn = 200000 + 5;
-int t, n;
-int a[maxn], vis[maxn], ans[maxn][2];
-bool check(int l1, int l2) {
-    for(int i = 1; i <= n; i++) {
-        vis[i] = 0;
-    }
-    for(int i = 1; i <= l1; i++) {
-        vis[a[i]] = 1;
-    }
-    for(int i = 1; i <= l1; i++) {
-        if(vis[i] == 0) {
-            return 0;
+const int maxn = 100 + 5;
+int n, a[maxn];
+ int cnt = 0;
+void quicksort(int a[], int p, int r) {
+    if(p < r) {
+        cnt++;
+        cout << cnt << endl;
+        //cout << "!!!" << endl;
+        int i = p;
+        int j = r;
+        int ans = a[p];
+        while(i < j) {
+            while(i < j && a[j] >= ans) {
+                j--;
+            }
+            if(i < j) {
+                a[i] = a[j];
+            }
+            while(i < j && a[i] < ans) {
+                i++;
+            }
+            if(i < j) {
+                a[j] = a[i];
+            }
         }
+        a[i] = ans;
+        quicksort(a, p, i - 1);
+        quicksort(a, i + 1, r); 
     }
-    for(int i = 1; i <= n; i++) {
-        vis[i] = 0;
-    }
-    for(int i = l1 + 1; i <= n; i++) {
-        vis[a[i]] = 1;
-    }
-    for(int i = 1; i <= l2; i++) {
-        if(vis[i] == 0) {
-            return 0;
-        }
-    }
-    return 1;
-}
+} 
 int main()
 {
    IOS
-   cin >> t;
-   while(t--) {
-       int ma = -1;
-       memset(a, 0, sizeof(a));
-       memset(vis, 0, sizeof(vis));
-       memset(ans, 0, sizeof(ans));
-       cin >> n;
-       for(int i = 1; i <= n; i++) {
-           cin >> a[i];
-           ma = max(ma, a[i]);
-       }
-       int cnt = 0;
-       if(check(ma, n - ma)) {
-           cnt++;
-           ans[cnt][0] = ma;
-           ans[cnt][1] = n - ma;
-       }
-       if(ma * 2 != n && check(n - ma, ma)) {
-           cnt++;
-           ans[cnt][0] = n - ma;
-           ans[cnt][1] = ma;
-       }
-       cout << cnt << endl;
-       for(int i = 1; i <= cnt; i++) {
-           cout << ans[i][0] << " " << ans[i][1] << endl; 
-       }
+   int a[12]={13, 19, 9, 5, 12, 8, 7, 4, 11, 2, 6, 14};
+   quicksort(a, 0, 11);
+   //cout << "xxx" << endl;
+   for(int i = 0; i < 12; i++) {
+       printf("%d ", a[i]);
    }
+   cout << endl;
    system("pause");
    return 0;
 }

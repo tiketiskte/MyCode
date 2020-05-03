@@ -31,14 +31,10 @@ int main()
            cout << 2 * i - 1 << " ";
            ans2 += 2 * i - 1;
        }
-       if(ans1 > ans2) {
-           cout << ans1 - ans2 << endl;
-       } else {
-           cout << ans2 - ans1 << endl;
-       }
+       cout << 2 * n - 1 + n <<endl;
     //    cout << endl;
     //    cout << "###1:" << ans1  << " " << "###2:" << ans2 << endl;
    }
-//    system("pause");
+    system("pause");
    return 0;
 }

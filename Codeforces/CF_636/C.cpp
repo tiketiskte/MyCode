@@ -8,32 +8,37 @@
 #define INF 0x3f3f3f3f
 
 using namespace std;
-const int maxn = 2e5 + 6;
+const int maxn = 2e5 + 5;
 int t, n;
 ll a[maxn];
+int sgn(int x) {
+    if(x > 0)
+        return 1;
+    else
+        return -1;
+}
 int main()
 {
    IOS
    cin >> t;
    while(t--) {
-       memset(a, 0, sizeof(a));
-       ll ans = 0;
        cin >> n;
        for(int i = 1; i <= n; i++) {
            cin >> a[i];
        }
+       ll ans = 0;
        for(int i = 1; i <= n; i++) {
-           int j = i;
            ll now = a[i];
-           while(j + 1 <= n && ((a[i] > 0 && a[j + 1] > 0) || (a[i] < 0 && a[j + 1] < 0))) {
-               j++;
+           int j = i;
+           while(j <= n && sgn(a[i]) == sgn(a[j])) {
                now = max(now, a[j]);
+               j++;
            }
-           i = j;
+           i  = j - 1;
            ans += now;
        }
        cout << ans << endl;
    }
-//    system("pause");
+   system("pause");
    return 0;
 }
