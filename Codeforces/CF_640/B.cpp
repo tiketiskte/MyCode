@@ -10,18 +10,17 @@
 
 using namespace std;
 
-int a, b;
-void Swap(int &a, int &b){
-    a = a ^ b;
-    b = a ^ b;
-    a = a ^ b;
-}
+int t, n, k;
 int main()
 {
    IOS
-   cin >> a >> b;
-   Swap(a, b);
-   cout << a << "qwq" << b << endl; 
+    while(t--) {
+    cin >> n >> k;
+    if(n < k) {
+        puts("NO");
+    }
+    
+}
    system("pause");
    return 0;
 }
