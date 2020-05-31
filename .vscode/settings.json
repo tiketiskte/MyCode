@@ -69,6 +69,7 @@
         "Arial",
         "fpath",
         "maxk",
+        "pval",
         "strftime"
     ]
 }
