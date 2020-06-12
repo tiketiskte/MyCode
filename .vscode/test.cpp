@@ -1,7 +1,7 @@
 /**
 * Copyright(c)
 * Author : tiketiskte
-*/
+**/
 #include <bits/stdc++.h>
 #define IOS {ios::sync_with_stdio(false);cin.tie(0);}
 #define ll long long
@@ -10,18 +10,21 @@
 
 using namespace std;
 
-int a, b;
-void Swap(int &a, int &b){
-    a = a ^ b;
-    b = a ^ b;
-    a = a ^ b;
-}
+vector<int> v;
+ 
+
 int main()
 {
    IOS
-   cin >> a >> b;
-   Swap(a, b);
-   cout << a << "qwq" << b << endl; 
+   int n, x;
+   cin >> n;
+   for(int i = 1; i <= n; i++) {
+   		cin >> x;
+		v.push_back(x); 
+   }   
+   for(auto &it:v) {
+   		cout << *it << endl;
+   }
    system("pause");
    return 0;
 }
