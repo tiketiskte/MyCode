@@ -11,29 +11,46 @@
 using namespace std;
 
 const int maxn = 1e5 + 5;
-int t, n, x;
-int a;
+int t;
+int a[maxn];
 void solve() {
-   cin >> n >> x;
-   ll sum = 0;
-   int l = 0, r = 0;
-   for(int i = 1; i <= n; i++) {
-       cin >> a;
-       sum += a;
-       if(a % x) {
-           if(l == 0) {
-               l = i;
-           }
-           r = i;
-       }
-   }
-   if(sum % x) {
-       cout << n << endl;
-   } else if(l == 0) {
-       cout << "-1" << endl;
-   } else {
-       cout << n - min(l, n - r + 1) << endl; 
-   }
+    int n, x;
+    int ans = 0, tmp;
+    ll sum = 0, now = 0;
+    cin >> n >> x;
+    for(int i = 1; i <= n; i++) {
+        cin >> a[i];
+        sum += a[i];
+    }
+    if(sum % x == 0) {
+        tmp = n;
+        now = sum;
+        for(int i = 1; i <= n; i++) {
+            now -= a[i];
+            tmp--;
+            if(now % x) {
+                ans = max(ans, tmp);
+                break;
+            }
+        }
+        tmp = n;
+        now = sum;
+        for(int i = n; i >= 1; i--) {
+            now -= a[i];
+            tmp--;
+            if(now % x) {
+                ans = max(ans, tmp);
+                break;
+            }
+        }
+        if(ans == 0) {
+            cout << "-1" << endl;
+        } else {
+            cout << ans << endl;
+        }
+    } else {
+        cout << n << endl;
+    }
 }
 int main()
 {
@@ -42,6 +59,6 @@ int main()
    while(t--) {
        solve();
    }
-   system("pause");
+//    system("pause");
    return 0;
 }
