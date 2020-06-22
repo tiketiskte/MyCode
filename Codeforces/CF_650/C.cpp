@@ -22,7 +22,7 @@ void solve() {
     int l = 0, r = n - 1;
     for(;s[l] != '1' && l < n; l++);
     for(;s[r] != '1' && r >= 0; r--);
-    //cout << l << " " << r << endl;
+    cout << l << " " << r << endl;
     if(l == n) {
         cout << (n + k) / (k + 1) << endl;
         return;
