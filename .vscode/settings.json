@@ -63,7 +63,9 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "valarray": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "string": "cpp",
+        "string_view": "cpp"
     },
     "cSpell.words": [
         "Arial",
