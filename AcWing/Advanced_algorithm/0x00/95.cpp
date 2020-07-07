@@ -1,97 +1,70 @@
-/**
-* Copyright(c)
-* Author : tiketiskte
-**/
 #include <bits/stdc++.h>
 #define IOS {ios::sync_with_stdio(false);cin.tie(0);}
-#define ll long long
-#define SZ(X) (int)X.size()
 #define INF 0x3f3f3f3f
-
 using namespace std;
 
-int T;
-int n;
-char Map[6][6];
-int ans = INF;
-bool check() {
-    for(int i = 1; i <= 5; i++) {
-        for(int j = 1; j <= 5; j++) {
-            if(Map[i][j] == '0') {
-                return false;
+int dx[5] = {0, -1, 0, 1, 0};
+int dy[5] = {0, 0, 1, 0, -1};
+char Map[5][5];
+
+void flip(int x, int y) {
+    for(int i = 0; i < 5; i++) {
+        int a = x + dx[i];
+        int b = y + dy[i];
+        if(a >= 0 && a < 5 && b >= 0 && b < 5) {
+            Map[a][b] = '0' + !(Map[a][b] - '0');
+        }
+    }
+}
+int solve() {
+    int ans = INF;
+    // int now = 0;
+    for(int k = 0; k < (1 << 5); k++) {
+        int now = 0;//要在内循环 一行有2^5种状态每个状态从0开始计算 然后更新now和ans
+        char tmp[5][5];
+        memcpy(tmp, Map, sizeof(Map));
+        for(int j = 0; j < 5; j++) {
+            if(k >> j & 1) {
+                now++;
+                flip(0, j);
             }
         }
-    }
-    return true;
-}
-void flip(int x, int y) {
-    if(Map[x][y] == '1') {
-        Map[x][y] = '0';
-    } else if(Map[x][y] == '0') {
-        Map[x][y] = '1';
-    }
-    if(Map[x - 1][y] == '1') {
-        Map[x - 1][y] = '0';
-    } else if(Map[x - 1][y] == '0') {
-        Map[x - 1][y] = '1';
-    }
-    if(Map[x + 1][y] == '1') {
-        Map[x + 1][y] = '0';
-    } else if(Map[x + 1][y] == '0') {
-        Map[x + 1][y] = '1';
-    }
-    if(Map[x][y - 1] == '1') {
-        Map[x][y - 1] = '0';
-    } else if(Map[x][y - 1] == '0') {
-        Map[x][y - 1] = '1';
-    }
-    if(Map[x][y + 1] == '1') {
-        Map[x][y + 1] = '0';
-    } else if(Map[x][y + 1] == '0') {
-        Map[x][y + 1] = '1';
-    }
-}
-void dfs(int x, int y, int step) {
-    if(check()) {
-        if(step < ans) {
-            ans = step;
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 5; j++) {
+                if(Map[i][j] == '0') {
+                    now++;
+                    flip(i + 1, j);
+                }
+            }
         }
-        return;
+        bool answer = true;
+        for(int i = 0; i < 5; i++) {
+            if(Map[4][i] == '0') {
+                answer = false;
+                break;
+            }
+        }
+        if(answer) {
+            ans = min(ans, now);
+        }
+        memcpy(Map, tmp, sizeof(tmp));
+        // cout << k << "###" << ans << endl;
     }
-    if(x == 6 || y == 6) {
-        return;
-    }
-    flip(x, y);
-    if(y == 5) {
-        dfs(x + 1, 1, step + 1);
+    if(ans > 6) {
+        return -1;
     } else {
-        dfs(x, y + 1, step + 1);
-    }
-    flip(x, y);//回溯
-    if(y == 5) {
-        dfs(x + 1, 1, step);
-    } else {
-        dfs(x, y + 1, step);
+        return ans;
     }
 }
-int main()
-{
-   IOS
-   cin >> n;
-   while(n--) {
-       ans = INF;
-       for(int i = 1; i <= 5; i++) {
-           for(int j = 1; j <= 5; j++) {
-               cin >> Map[i][j];
-           }
-       }
-       dfs(1, 1, 0);
-       if(ans != INF && ans <= 6) {
-           cout << ans << endl;
-       } else {
-           cout << -1 << endl;
-       }
-   }
-   system("pause");
-   return 0;
+int main(void) {
+    IOS
+    int n;
+    cin >> n;
+    while(n--) {
+        for(int i = 0; i < 5; i++) {
+            cin >> Map[i];
+        }
+        cout << solve() << endl;
+    }
+    system("pause");
 }
