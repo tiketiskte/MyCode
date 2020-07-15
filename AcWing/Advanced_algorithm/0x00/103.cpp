@@ -3,6 +3,8 @@
 * Author : tiketiskte
 **/
 #include <bits/stdc++.h>
+#pragma G++ optimize (3)
+#pragma C++ optimize (3)
 #define IOS {ios::sync_with_stdio(false);cin.tie(0);}
 #define ll long long
 #define PLL pair<ll, ll>
@@ -12,14 +14,14 @@
 using namespace std;
 
 const int maxn = 2e5 + 5;
-struct node {
+struct point {
     ll idx;
     ll voice;
     ll subtitle;
-}moive[maxn];
+}movie[maxn];
 int n, m;
-unordered_map <ll, ll> mp;
-bool cmp(node& a, node& b) {
+map <ll, ll> mp;
+bool cmp(point a, point b) {
     if(a.voice == b.voice) {
         return a.subtitle > b.subtitle;
     }
@@ -29,8 +31,8 @@ int main()
 {
     IOS
     cin >> n;
+    ll x;
     for(int i = 1; i <= n; i++) {
-        ll x;
         cin >> x;
         mp[x]++;
     }
@@ -38,16 +40,19 @@ int main()
     for(int i = 1; i <= m; i++) {
         ll x1;
         cin >> x1;
-        moive[i].idx = i;
-        moive[i].voice = mp[x1];
+        movie[i].idx = i;
+        movie[i].voice = mp[x1];
     }
     for(int i = 1; i <= m; i++) {
         ll x2;
         cin >> x2;
-        moive[i].subtitle = mp[x2]; 
+        movie[i].subtitle = mp[x2];
     }
-    sort(moive + 1, moive + 1 + m, cmp);
-    cout << moive[1].idx << endl;
+    sort(movie + 1, movie + 1 + m, cmp);
+    /* for(int i = 1; i <= m; i++) {
+        cout << "idx:" << movie[i].idx << endl << "voice:" << movie[i].voice  << endl << "subtitle:" << movie[i].subtitle << endl;
+    } */
+    cout << movie[1].idx << endl;
     system("pause");
     return 0;
 }
