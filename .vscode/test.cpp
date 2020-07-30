@@ -11,43 +11,29 @@
 
 using namespace std;
 
-const int maxn = 2e5 + 5;
-struct node {
-    ll idx;
-    ll voice;
-    ll subtitle;
-}moive[maxn];
-int n, m;
-unordered_map <ll, ll> mp;
-bool cmp(node& a, node& b) {
-    if(a.voice == b.voice) {
-        return a.subtitle > b.subtitle;
-    }
-    return a.voice > b.voice;
-}
+const int maxn = 1e4 +5;
+int n;
+ll a[maxn], ans[maxn];
+stack <ll> s;
+
 int main()
 {
     IOS
     cin >> n;
-    for(int i = 1; i <= n; i++) {
-        ll x;
-        cin >> x;
-        mp[x]++;
+    for(int i = 0; i < n; i++) {
+        cin >> a[i];
     }
-    cin >> m;
-    for(int i = 1; i <= m; i++) {
-        ll x1;
-        cin >> x1;
-        moive[i].idx = i;
-        moive[i].voice = mp[x1];
+    for(int i = 2 * n; i >= 0; i--) {
+        while(!s.empty() && s.top() <= a[i % n]) {
+            s.pop();
+        }
+        ans[i % n] = s.empty() ? 0 : s.top();
+        s.push(a[i % n]);
     }
-    for(int i = 1; i <= m; i++) {
-        ll x2;
-        cin >> x2;
-        moive[i].subtitle = mp[x2]; 
+    for(int i = 0; i < n; i++) {
+        cout << ans[i] << " ";
     }
-    sort(moive + 1, moive + 1 + m, cmp);
-    cout << moive[1].idx << endl;
+    cout << endl;
     system("pause");
     return 0;
 }

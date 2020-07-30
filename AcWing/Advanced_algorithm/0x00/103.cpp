@@ -3,8 +3,6 @@
 * Author : tiketiskte
 **/
 #include <bits/stdc++.h>
-#pragma G++ optimize (3)
-#pragma C++ optimize (3)
 #define IOS {ios::sync_with_stdio(false);cin.tie(0);}
 #define ll long long
 #define PLL pair<ll, ll>
