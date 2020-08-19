@@ -7,59 +7,59 @@
 #define ll long long
 #define PLL pair<ll, ll>
 #define SZ(X) (int)X.size()
+#define sqr(x) (x) * (x)
 #define INF 0x3f3f3f3f
-#define sqr(a) (a) * (a)
 
 using namespace std;
 
-const int maxn = 5e5 + 5;
+const int maxn = 500000 + 5;
 int k, n, m;
-ll t, ans;
-ll rec[maxn], a[maxn], b[maxn]; // 原序列 排序后序列 
-void merge(int l, int mid, int r) {
-    int p1 = l, p2 = mid + 1;
-    for(int i = l; i <= r; i++) {
-        if((p2 > r) || (p1 <= mid && a[p1] <= a[p2])) {
-            b[i] = a[p1++];
-        } else {
-            b[i] = a[p2++];
-        }
-    }
-}
-bool check(int l, int mid, int r) {
-    for(int i = mid; i <= r; i++) {
+ll t, ans, rec[maxn], a[maxn], b[maxn];
+ll check(int l, int mid, int r) {
+    for(int i = mid; i < r; i++) {
         a[i] = rec[i];
     }
-    sort(a + mid, a + r + 1);
-    merge(l, mid - 1, r);
-    ll sum = 0;
-    for(int i = 1; i <= ((r - l + 1) >> 1) && i <= m; i++) {
-        sum += sqr(b[r - i + 1] - b[l + i - 1]);
-    }
-    if(sum <= t) {
-        for(int i = l; i <= r; i++) {
-            a[i] = b[i];
-        }
-        return true; 
-    } else {
-        return false;
-    }
-}
-void work() {
-    int p = 1, l = 1, r = 1;
-    a[l] = rec[l];
-    while(r <= n) {
-        if(!p) {
-            ans++;
-            l = ++r;
-            a[l] = rec[l];
-            p = 1;
-        } else if(r + p <= n && check(l, r + 1, r + p)) {
-            r = r + p;
-            p <<= 1;
+    sort(a + mid, a + r);
+    int i = l, j = mid, cnt = 0;
+    while(i != mid && j != r) {
+        if(a[i] < a[j]) {
+            b[cnt++] = a[i++];
         } else {
-            p >>= 1;
+            b[cnt++] = a[j++];
         }
+    }
+    while(i != mid) {
+        b[cnt++] = a[i++];
+    }
+    while(j != r) {
+        b[cnt++] = a[j++];
+    }
+    ll SPD = 0;
+    for(int i = 0; i < m && i < cnt; i++, cnt--) {
+        SPD += sqr(b[i] - b[cnt - 1]);
+    }
+    return SPD;
+}
+void solve() {
+    int start = 0, end = 0;
+    while(end < n) {
+        int len = 1;
+        while(len) {
+            if(end + len <= n && check(start, end, end + len) <= t) {
+                end += len;
+                len <<= 1;
+                if(end >= n) {
+                    break;
+                }
+                for(int i = start; i < end; i++) {
+                    a[i] = b[i - start];
+                }
+            } else {
+                len >>= 1;
+            }
+        }
+        start = end;
+        ans++;
     }
 }
 int main(void)
@@ -67,15 +67,15 @@ int main(void)
     IOS
     cin >> k;
     while(k--) {
+        ans = 0;
         memset(rec, 0, sizeof(rec));
         memset(a, 0, sizeof(a));
         memset(b, 0, sizeof(b));
         cin >> n >> m >> t;
-        for(int i = 1; i <= n; i++) {
+        for(int i = 0; i < n; i++) {
             cin >> rec[i];
         }
-        ans = 0;
-        work();
+        solve();
         cout << ans << endl;
     }
     system("pause");
