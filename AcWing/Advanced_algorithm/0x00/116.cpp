@@ -34,28 +34,28 @@ int main(void)
     for(int i = 0; i < 4; i++) {
         for(int j = 0; j < 4; j++) {
             for(int k = 0; k < 4; k++) {
-                change[i][j] += 1 << get(i, k);
-                change[i][j] += 1 << get(k, j);
+                change[i][j] += (1 << get(i, k)) + (1 << get(k, j));
             }
             change[i][j] -= 1 << get(i, j);
         }
     }
-    vector <PII> res;
-    for(int k = 0; k < (1 << 16); k++) {
+    vector <PII> res, path;
+    for(int i = 0; i < (1 << 16); i++) {
         int now = state;
-        vector <PII> path;
-        for(int i = 0; i < 16; i++) {
-            if(k >> 1 & i) {
-                int x = i / 4, y = i % 4;
+        path.clear();
+        for(int j = 0; j < 16; j++) {
+            if(i >> j & 1) {
+                int x = j / 4, y = j % 4;
                 now ^= change[x][y];
                 path.push_back(make_pair(x, y));
             }
         }
-        if(!now && (res.empty() | res.size() > path.size())) {
+        if(!now && (res.empty() || res.size() > path.size())) {
             res = path;
         }
     }
-    for(auto p : res) {
+    cout << res.size() << endl;
+    for(auto &p : res) {
         cout << p.first + 1 << " " << p.second + 1 << endl;
     }
     system("pause");
