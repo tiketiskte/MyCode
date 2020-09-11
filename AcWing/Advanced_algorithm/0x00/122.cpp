@@ -14,20 +14,10 @@
 
 using namespace std;
 
-int t;
-ll  a, b, x, y, n;
-void solve() {
-    // ll tmp1 = x - a, tmp2 = y - b;
-    ll tmp = a > b ? a : b;
-}
+
 int main(void)
 {
     IOS
-    cin >> t;
-    while(t--) {
-        cin >> a >> b >> x >> y >> n;
-        solve();
-    }
     system("pause");
     return 0;
 }
