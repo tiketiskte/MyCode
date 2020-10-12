@@ -14,27 +14,20 @@
 
 using namespace std;
 
-const int maxn = 1000000 + 5;
-
+const int maxn = 10000 + 5;
 int n;
-ll a[maxn], ans, Sum, sum[maxn];
+PII soldier[maxn];
+bool cmp1(PII a, PII b) {
+    
+}
 int main(void)
 {
     IOS
     cin >> n;
     for(int i = 1; i <= n; i++) {
-        cin >> a[i];
-        Sum += a[i];
+        cin >> soldier[i].first >> soldier[i].second;
     }
-    ll avg = (ll)Sum / n;
-    for(int i = 1; i <= n; i++) {
-        sum[i] = a[i] - avg + sum[i - 1];
-    }
-    sort(sum + 1, sum + 1 + n);
-    for(int i = 1; i <= n; i++) {
-        ans += abs(sum[i] - sum[(n + 1) / 2]);
-    }
-    cout << ans << endl;
+
     system("pause");
     return 0;
 }
