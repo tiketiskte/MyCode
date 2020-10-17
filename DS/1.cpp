@@ -1,4 +1,4 @@
-// 顺序表静态分配
+//Static_allocation
 #include <iostream>
 #define IOS {ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);}
 using namespace std;
@@ -9,7 +9,7 @@ typedef struct node {
     int length;
 }sqlist;
 void Init(sqlist& L) {
-    L.length = 0; // 初始化length 或者定义L为全局变量
+    L.length = 0; // Init_length 
     for(int i = 0; i < SIZE; i++) {
         L.arr[i] = i + 100; 
         L.length++;
@@ -37,13 +37,47 @@ bool Insert(sqlist &L, int pos, int x) {
     L.length++;
     return true;
 }
+void Delete(sqlist &L, int pos, int &x) {
+    if(pos < 1 || pos > L.length) {
+        cout << "Illegal location!" << endl;
+        return ;
+    }
+    x = L.arr[pos - 1];
+    for(int i = pos; i < L.length; i++) {
+        L.arr[i - 1] = L.arr[i];
+    }
+    L.length--;
+}
+bool Find(sqlist L, int x, int &pos) {
+    if(L.length == 0) {
+        return false;
+    }
+    pos = -1;
+    for(int i = 0; i < L.length; i++) {
+        if(L.arr[i] == x) {
+            pos = i + 1;
+            break;
+        }
+    }
+    if(pos == -1) {
+        return false;
+    } else {
+        return true;
+    }
+}
 int main(void) {
     IOS
     sqlist L;
+    int ans1, ans2;
     Init(L);
     print(L);
     Insert(L, 2, 521);
     print(L);
+    Delete(L, 3, ans1);
+    cout << "Delete's answer:" << ans1 << endl;
+    print(L);
+    Find(L, 105, ans2);
+    cout << "Find's answer:" << ans2 << endl;
     system("pause");
     return 0;
 }
