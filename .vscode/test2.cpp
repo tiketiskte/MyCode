@@ -1,95 +1,61 @@
+/**
+* Copyright(c)
+* Author : tiketiskte
+**/
 #include <bits/stdc++.h>
-
-#define lowbit(pos) (pos) & (-pos)
-
-#define debug(x) cerr << (#x) << ":\t" << (x) << '\n'
-
-#define debug2(x, y) cerr << (#x) << ":\t" << (x) << '\t' << (#y) << ":\t" << (y) << '\n'
-
-#define debug3(x, y, z) cerr << (#x) << ":\t" << (x) << '\t' << (#y) << ":\t" << (y) << '\t' << (#z) << ":\t" << (z) << '\n'
-
-#define IOS() {ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);}
-
-typedef long long ll;
-
-typedef unsigned long long ull;
-
+#define IOS {ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);}
+#define ll long long
+#define PII pair<int, int>
+#define PLL pair<ll, ll>
+#define PDD pair<double, double>
+#define sqr(x) (x) * (x)
+#define SZ(X) (int)X.size()
+#define INF 0x3f3f3f3f
+ 
 using namespace std;
-
-const int PRIME = 151;
-
-const ll MOD = 1e9 + 7;
-
-const int MAXN = 1e5 + 5;
-
-const int INF = 0x3f3f3f3f;
-
- 
-
-int n;
-
- 
-
-void quicksort (int* a, int l, int r) {
-
-    if (l >= r) return;
-
-    int temp = a[l], i = l, j = r;
-
-    while (i < j) {
-
-        while (i < j && a[j] > temp) j--;
-
-        a[i] = a[j];
-
-        while (i < j && a[i] <= temp) i++;
-
-        a[j] = a[i];
-
-    }
-
-    a[i] = temp;
-
-    for (int k = 0; k < n - 1; ++k)
-
-        cout << a[k] << ' ';
-
-    cout << a[n - 1] << '\n';
-
-    quicksort(a, l, i - 1);
-
-    quicksort(a, i + 1, r);
-
+ 
+const int maxn = 1e4 + 5;
+int n, k;
+ll a[maxn];
+ll solve(ll arr[], int l, int r, int k) {
+    if(l >= r) {
+        return arr[l];
+    }
+    int i = l, j = r + 1;
+    ll key = arr[l];
+    while(true) {
+        /* do {
+            i++;
+        }while(arr[i] < key);
+        do {
+            j--;
+        }while(arr[j] > key); */
+        while(a[++i] < key);
+        while(a[--j] > key);
+        if(i >= j) {
+            break;
+        }
+        swap(arr[i], arr[j]);
+    }
+    if(j - l + 1 == k) {
+        return key;
+    }
+    arr[l] = arr[j];
+    arr[j] = key;
+    if(j - l + 1 < k) { 
+        return solve(arr, j + 1, r, k - j + l - 1);
+    } else {
+        return solve(arr, l, j - 1, k);
+    }
 }
-
- 
-
-int main () {
-
-    IOS()
-
-    string s, tt;
-
-    getline(cin, s);
-
-    int tmp = 0, a[50];
-
-    for (int i = 0; i < s.length(); ++i) {
-
-        if (isdigit(s[i]))
-
-            tt += s[i];
-
-        else if (isspace(s[i]))
-
-            a[++n] = stoi(tt), tt = "";
-
-    }
-
-    a[++n] = stoi(tt);
-
-    quicksort(a + 1, 0, n - 1);
-
-    return 0;
-
+int main(void) {
+    IOS
+    while(cin >> n >> k) {
+        for(int i = 1; i <= n; i++) {
+            cin >> a[i];
+        }
+        cout << solve(a + 1, 0, n - 1, k) << endl;
+    }
+    // system("pause");
+    return 0;
 }
