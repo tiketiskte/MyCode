@@ -11,51 +11,39 @@
 #define sqr(x) (x) * (x)
 #define SZ(X) (int)X.size()
 #define INF 0x3f3f3f3f
- 
+
 using namespace std;
- 
-const int maxn = 1e4 + 5;
-int n, k;
-ll a[maxn];
-ll solve(ll arr[], int l, int r, int k) {
-    if(l >= r) {
-        return arr[l];
-    }
-    int i = l, j = r + 1;
-    ll key = arr[l];
-    while(true) {
-        /* do {
-            i++;
-        }while(arr[i] < key);
-        do {
-            j--;
-        }while(arr[j] > key); */
-        while(a[++i] < key);
-        while(a[--j] > key);
-        if(i >= j) {
-            break;
-        }
-        swap(arr[i], arr[j]);
-    }
-    if(j - l + 1 == k) {
-        return key;
-    }
-    arr[l] = arr[j];
-    arr[j] = key;
-    if(j - l + 1 < k) { 
-        return solve(arr, j + 1, r, k - j + l - 1);
-    } else {
-        return solve(arr, l, j - 1, k);
-    }
-}
+
+const int maxn = 5000 + 5;
+bool a[maxn];
+int n, m;
 int main(void) {
     IOS
-    while(cin >> n >> k) {
-        for(int i = 1; i <= n; i++) {
-            cin >> a[i];
-        }
-        cout << solve(a + 1, 0, n - 1, k) << endl;
+    cin >> n >> m;
+    for(int i = 1; i <= n; i++) {
+        a[i] = true;
     }
-    // system("pause");
+    for(int i = 1; i <= m; i++) {
+        for(int j = i; j <= n; j += i) {
+            if(a[j]) {
+                a[j] = false;
+            } else {
+                a[j] = true;
+            }
+        }
+    }
+    bool flag = true;
+    for(int i = 1; i <= n; i++) {
+        if(!a[i]) {
+            if(flag) {
+                cout << i;
+                flag = false;
+            } else {
+                cout << "," << i;
+            }
+        }
+    }
+    cout << endl;
+    system("pause");
     return 0;
 }
