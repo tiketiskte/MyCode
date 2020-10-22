@@ -13,38 +13,38 @@
 #define INF 0x3f3f3f3f
 
 using namespace std;
-int n, flag = 20;
+
 stack <int> s;
-vector <int> ans;
-void dfs(int x) {
+vector <int> v;
+int n, flag = 20;
+void dfs(int u) {
     if(!flag) {
-        return;
+        return ;
     }
-    if(ans.size() == n) {
+    if(SZ(v) == n) {
         flag--;
-        for(auto it : ans) {
+        for(auto it : v) {
             cout << it;
         }
         cout << endl;
-        return ;
     }
-    if(s.empty()) {
-        ans.push_back(s.top());
+    if(s.size()) {
+        v.push_back(s.top());
         s.pop();
-        dfs(x);
-        s.push(ans.back());
-        ans.pop_back();
+        dfs(u);
+        s.push(v.back());
+        v.pop_back();
     }
-    if(x <= n) {
-        s.push(x);
-        dfs(x + 1);
+    if(u <= n) {
+        s.push(u);
+        dfs(u + 1);
         s.pop();
-    }   
+    }
 }
 int main(void) {
     IOS
     cin >> n;
-    dfs(1); 
+    dfs(1);
     system("pause");
     return 0;
 }

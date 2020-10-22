@@ -34,8 +34,24 @@ Linklist Createlinklist2(Linklist &L) {
         last = s;
     }
     last -> next = NULL;
-    return L;
-    
+    return L;   
+}
+void Find1(Linklist L, int pos, int &ans) {
+    Lnode *tmp = L -> next;
+    int j = 1;
+    while(tmp && j < pos) {
+        tmp = tmp -> next;
+        j++;
+    }
+    ans = tmp -> data;
+}
+void Find2(Linklist L, int ans, int &pos) {
+    Lnode *tmp = L -> next;
+    pos = 1;
+    while(tmp && tmp -> data != ans) {
+        tmp = tmp ->next;
+        pos++;
+    }
 }
 void PrintLinklist(Linklist L) {
     cout << "This Linklist element is:" << endl;
@@ -49,9 +65,14 @@ void PrintLinklist(Linklist L) {
 int main(void) {
     IOS
     Linklist L;
+    int x;
     // Createlinklist1(L);
     Createlinklist2(L);
     PrintLinklist(L);
+    Find1(L, 2, x);
+    cout << "Find1 ans:" << x << endl;
+    Find2(L, 14, x);
+    cout << "Find2 pos:" << x << endl;
     system("pause");
     return 0;
 }
