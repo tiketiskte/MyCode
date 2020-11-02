@@ -1,38 +1,38 @@
 #include<stdio.h>
-#include <stdlib.h>
+void judge(char a,char b)
+{
+    if(a=="Rock")
+    {
+        if(b=="Rock")
+            printf("Tie");
+        else if(b=="Scissors")
+            printf("Player1");
+        else if(b=="Paper")
+            printf("Player2");
+    }
+    if(a=="Scissors")
+    {
+        if(b=="Rock")
+            printf("Player2");
+        else if(b=="Scissors")
+            printf("Tie");
+        else if(b=="Paper")
+            printf("Player1");
+    }
+    if(a=="Paper")
+    {
+        if(b=="Rock")
+            printf("Player1");
+        else if(b=="Scissors")
+            printf("Player2");
+        else if(b=="Paper")
+            printf("Tie");
+    }
+}
 int main(void)
 {
-    int M,N;
-    scanf("%d %d",&M,&N);
-    int on[M];
-    for(int i=0;i<M;i++)
-        on[i]=0;
-    for(int i=2;i<=M;i++)
-    {
-        for(int j=i;j<=N;j++)
-        {
-            if(j%i==0)
-            {
-                if(on[j-1]==0)
-                    on[j-1]=1;
-                else 
-                    on[j-1]=0;
-            }
-        }
-    }
-    int flag = 1;
-    for(int i=0;i<M;i++)
-    {
-        if(on[i]==0) {
-                if(flag) {
-                printf("%d",i+1);
-                flag = 0;
-            } else {
-                printf(",%d,",i+1);
-            }
-        }
-        
-    }
-    system("pause");
+    int n;
+    void judge(char a,char b);
+    judge("Rock","Scissors");
     return 0;
 }
