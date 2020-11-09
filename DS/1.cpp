@@ -1,4 +1,4 @@
-// 静态布局
+// 顺序表静态分配
 #include <iostream>
 #define IOS {ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);}
 using namespace std;
