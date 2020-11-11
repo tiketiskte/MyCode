@@ -13,40 +13,42 @@
 #define INF 0x3f3f3f3f
 
 using namespace std;
-const int maxn1 = 1000 + 10;
-const int maxn2 = 1000000 + 10;
-int t, k, n, x, cnt, z;
-int team[maxn2];
-string command;
-queue <int> q;
-queue <int> everyteam[maxn1];
+
+const int MAXN1 = 1000 + 5;
+const int MAXN2 = 1000000 + 5;
+int t, a[MAXN2];
 int main(void) {
     IOS
+    int cnt = 1;
     while(cin >> t && t) {
-        memset(team, 0, sizeof(team));
-        k = x = cnt = 0;
-        cout << "Scenario #" << k++ << endl;
-        for(int i = 0; i < n; i++) {
-            cin >> cnt;
-            while(cnt--) {
+        queue <int> term[MAXN1];
+        queue <int> q;
+        cout << "Scenario #" << cnt++ << endl;
+        for (int i = 0; i < t; i++) {
+            int n;
+            cin >> n;
+            while(n--) {
+                int x;
                 cin >> x;
-                team[x] = i;
+                a[x] = i;
             }
         }
+        string command;
         while(cin >> command && command != "STOP") {
-            if(command[0] == 'E') {
+            if(command == "ENQUEUE") {
+                int z;
                 cin >> z;
-                int ans = team[z];
-                if(everyteam[ans].empty()) {
-                    q.push(ans);
+                int tmp1 = a[z];
+                if(term[tmp1].empty()) {
+                    q.push(tmp1);
                 }
-                everyteam[ans].push(z);
+                term[tmp1].push(z);
             } else {
-                int ans = q.front();
-                auto &tmp = everyteam[ans];
-                cout << tmp.front() << endl;
-                tmp.pop();
-                if(tmp.empty()) {
+                int tmp2 = q.front();
+                auto &ans = term[tmp2];
+                cout << ans.front() << endl;
+                ans.pop();
+                if(ans.empty()) {
                     q.pop();
                 }
             }
