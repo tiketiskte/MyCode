@@ -20,7 +20,7 @@
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
-            "externalConsole": false,
+            "externalConsole": true,
             "environment": [],
             "MIMode": "gdb",
             "windows": {
