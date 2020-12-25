@@ -71,6 +71,8 @@
         "Lnode",
         "MAXN",
         "MAXNSIZE",
+        "coef",
+        "expn",
         "fpath",
         "initsqstack",
         "maxk",
