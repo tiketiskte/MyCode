@@ -54,7 +54,7 @@ bool PopStack(LinkStack &s, int &e) {
     LinkStackNode *tmp = (LinkStackNode*)malloc(sizeof(LinkStackNode));
     tmp = s -> next;
     e = tmp -> data;
-    s -> next = tmp -> next;
+    s -> next = tmp -> next;//s -> next = s -> next -> next
     free(tmp);
     return true;
 }
