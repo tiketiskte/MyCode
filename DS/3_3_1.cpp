@@ -41,12 +41,58 @@ bool Pushstack(LinkStack &s, int e) {
         return false;
     }
     tmp -> data = e;
-    tmp -> next = s -> next;
-    s -> next = tmp;
+    tmp -> next = s;
+    s = tmp;
+    return true;
+}
+bool PopStack(LinkStack &s, int &e) {
+    if(Isempty(s)) {
+        return false;
+    }
+    LinkStackNode *tmp = (LinkStackNode*)malloc(sizeof(LinkStackNode));
+    tmp = s;
+    e = tmp -> data;
+    s = s -> next;
+    free(tmp);
+    return true;
+}
+bool GetTopStack(LinkStack s, int &e) {
+    if(Isempty(s)) {
+        return false;
+    }
+    e = s -> data;
     return true;
 }
 int main(void) {
     IOS
+    LinkStack s;
+    int n, x, e;
+    InitLinkStack(s);
+    if(Isempty(s)) {
+        cout << "First:Stack is empty!" << endl;
+    } else {
+        cout << "First:Stack isn't empty!" << endl;
+    }
+    cin >> n;
+    for(int i = 0; i < n; i++) {
+        cin >> x;
+        Pushstack(s, x);
+    }
+    if(Isempty(s)) {
+        cout << "Second:Stack is empty!" << endl;
+    } else {
+        cout << "Second:Stack isn't empty!" << endl;
+    }
+    for(int i = 0; i < n; i++) {
+        PopStack(s, e);
+        cout << i << ":" << e << endl;
+    }
+    if(Isempty(s)) {
+        cout << "Third:Stack is empty!" << endl;
+    } else {
+        cout << "Third:Stack isn't empty!" << endl;
+    }
+    cout << endl;
     system("pause");
     return 0;
 }
