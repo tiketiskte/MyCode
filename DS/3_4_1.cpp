@@ -78,7 +78,7 @@ int main(void) {
     } else {
         cout << "The queue isn't empty!" << endl;
     }
-    for(int i = 0; i < 2; i++) {
+    for(int i = 0; i < n; i++) {
         PopSqQueue(q, e);
         cout << i << ":" << e << endl;
     }
