@@ -1,4 +1,5 @@
 /**
+队列的链式实现 不带头结点
 * Copyright(c)
 * Author : tiketiskte
 **/
