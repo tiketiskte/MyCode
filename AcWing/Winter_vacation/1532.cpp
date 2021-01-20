@@ -22,27 +22,32 @@ typedef pair <double, double> PDD;
 
 ll gcd(ll a, ll b) {return b ? gcd(b, a % b) : a;}
 
-const int MAXN = 1e5 + 5;
-int n, m, flag = 1, w[MAXN];
+unordered_set <int> Hash;
+int n, m, v1 = INF, v2;
+
 int main(void) {
     IOS
     cin >> n >> m;
     for(int i = 0; i < n; i++) {
-        cin >> w[i];
-    }
-    sort(w, w + n);
-    for(int i = 0, j = n - 1; i < j; i++) {
-        while(i < j && w[i] + w[j] > m) {
-            j--;
+        int a, b;
+        cin >> a;
+        b = m - a;
+        if(Hash.count(b)) {
+            Hash.insert(a);
+            if(a > b) {
+                swap(a, b);
+            }
+            if(a < v1) {
+                v1 = a, v2 = b;
+            }
+        } else {
+            Hash.insert(a);
         }
-        if(i < j && w[i] + w[j] == m) {
-            cout << w[i] << " " <<  w[j] << endl;
-            flag = 0;
-            break;
-        }
     }
-    if(flag) {
+    if(v1 == INF) {
         cout << "No Solution" << endl;
+    } else {
+        cout << v1 << " " << v2 << endl;
     }
     system("pause");
     return 0;
