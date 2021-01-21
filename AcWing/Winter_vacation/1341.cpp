@@ -22,24 +22,25 @@ typedef pair <double, double> PDD;
 
 ll gcd(ll a, ll b) {return b ? gcd(b, a % b) : a;}
 
-int month[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-int n, weekday[7];
+int month[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+int n, weekday[7]; 
 int main(void) {
     IOS
     cin >> n;
-    int year = 1900, day = 0;
-    while(n--) {
+    int days = 0;
+    for(int year = 1900; year < 1900 + n; year++) {
         for(int i = 1; i <= 12; i++) {
-            weekday[(day + 13) % 7]++;
-            day += month[i];
-            if(i == 2 && ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))) {
-                day++;
+            weekday[(days + 12) % 7]++;
+            days += month[i];
+            if(i == 2) {
+                if((year % 4 == 0 && year % 100 != 0) || (year % 100 == 0 && year % 400 == 0)) {
+                    days++;
+                }
             }
         }
-        year++;
-    } 
-    cout << weekday[6] << " ";
-    for(int i = 0; i < 6; i++) {
+    }
+    cout << weekday[5] << " " << weekday[6] << " ";
+    for(int i = 0; i < 5; i++) {
         cout << weekday[i] << " ";
     }
     cout << endl;
