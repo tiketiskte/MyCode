@@ -24,29 +24,42 @@ ll gcd(ll a, ll b) {return b ? gcd(b, a % b) : a;}
 
 stack <char> s;
 string str;
-void solve() {
+bool solve() {
     for(int i = 0; i < SZ(str); i++) {
-        if(str[i] == '(') {
+        if(str[i] == '(' || str[i] == '[' || str[i] == '{') {
             s.push(str[i]);
-        }
-        if(str[i] == ')') {
+        } else {
             if(s.empty()) {
-                cout << "NO" << endl;
-                return ;
+                return false;
             }
+            char tmp = s.top();
             s.pop();
+            if(str[i] == ')' && tmp != '(') {
+                return false;
+            }
+            if(str[i] == ']' && tmp != '[') {
+                return false;
+            }
+            if(str[i] == '}' && tmp != '{') {
+                return false;
+            }
         }
     }
-    if(s.empty()) {
-        cout << "YES" << endl;
+    if(!s.empty()) {
+        return false;
     } else {
-        cout << "NO" << endl;
+        return true;
     }
 }
 int main(void) {
     IOS
     cin >> str;
-    solve();
+    bool ans = solve();
+    if(ans) {
+        cout << "YES" << endl;
+    } else {
+        cout << "NO" << endl;
+    }
     system("pause");
     return 0;
 }
