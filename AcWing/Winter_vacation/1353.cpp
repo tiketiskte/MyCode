@@ -22,20 +22,28 @@ typedef pair <double, double> PDD;
 
 ll gcd(ll a, ll b) {return b ? gcd(b, a % b) : a;}
 
-const int MAXN1 = 25 + 5, MAXN2 = 10000 + 5;
-ll f[MAXN2];
-int v, n, v_i;
+const int MAXN = 1000 + 5;
+int n, a[MAXN];
 int main(void) {
     IOS
-    cin >> v >> n;
-    f[0] = 1;
-    for(int i = 1; i <= v; i++) {
-        cin >> v_i;
-        for(int j = v_i; j <= n; j++) {
-            f[j] = f[j] + f[j - v_i];
-        }
+    cin >> n;
+    for(int i = 0; i < n; i++) {
+        cin >> a[i];
     }
-    cout << f[n] << endl;
+    int ans = 1e18;
+    for(int i = 0; i + 17 <= 100; i++) {
+        int cost = 0;
+        int l = i, r = i + 17;
+        for(int j = 0; j < n; j++) {
+            if(a[j] < l) {
+                cost += sqr(l - a[j]);
+            } else if(a[j] > r) {
+                cost += sqr(a[j] - r);
+            }
+        }
+        ans = min(ans, cost);
+    }
+    cout << ans << endl;
     system("pause");
     return 0;
 }
