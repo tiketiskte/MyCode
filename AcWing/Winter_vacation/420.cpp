@@ -27,13 +27,22 @@ int n, m, a[MAXN];
 int main(void) {
     IOS
     cin >> n >> m;
-    for(int i = 0; i < n; i++) {
+    for(int i = 1; i <= n; i++) {
         cin >> a[i];
     }
     while(m--) {
-        next_permutation(a,a + n);
+        int k = n;
+        while(a[k - 1] > a[k]) {
+            k--;
+        }
+        int t = k;
+        while(a[t + 1] > a[k - 1]) {
+            t++;
+        }
+        swap(a[k - 1], a[t]);
+        reverse(a + k, a + n + 1);
     }
-    for(int i = 0; i < n; i++) {
+    for(int i = 1; i <= n; i++) {
         cout << a[i] << " ";
     }
     cout << endl;
