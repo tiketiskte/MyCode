@@ -22,14 +22,23 @@ typedef pair <double, double> PDD;
 
 ll gcd(ll a, ll b) {return b ? gcd(b, a % b) : a;}
 
+double n;
+bool qwq(double qaq) {
+    return (qaq * qaq * qaq) >= n;
+}
 int main(void) {
     IOS
-    int n = 5, count = 0;
-    if(1 <= n <= 10) {
-        count++;
+    cin >> n;
+    double l = -10000, r = 10000;
+    while(r - l > 1e-8) {
+        double mid = (l + r) / 2;
+        if(qwq(mid)) {
+            r = mid;
+        } else {
+            l = mid;
+        }
     }
-    cout << count << endl;
-
+    cout << fixed << setprecision(6) << l << endl;
     system("pause");
     return 0;
 }
