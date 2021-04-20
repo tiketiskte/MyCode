@@ -22,41 +22,15 @@ typedef pair <double, double> PDD;
 
 ll gcd(ll a, ll b) {return b ? gcd(b, a % b) : a;}
 
-const int MAXN = 100000 + 5;
-vector <int> A, B;
-string a, b;
-vector <int> add(vector <int>& x, vector <int>& y) {
-    vector <int> ans;
-    int t = 0;
-    for(int i = 0; i < SZ(x) || i <SZ(y); i++) {
-        if(i < SZ(x)) {
-            t += x[i];
-        } 
-        if(i < SZ(y)) {
-            t += y[i];
-        }
-        ans.pb(t % 10);
-        t /= 10;
-    }
-    if(t) {
-        ans.pb(1);
-    }
-    return ans;
-}
+typedef struct StringNode {
+    char ch;
+    struct StringNode* next;
+}StringNode, *String;
 int main(void) {
     IOS
-    cin >> a >> b;
-    for(int i = SZ(a) - 1; i >= 0; i--) {
-        A.pb(a[i] - '0');
-    }
-    for(int i = SZ(b) - 1; i >= 0; i--) {
-        B.pb(b[i] - '0');
-    }
-    vector <int> c = add(A, B);
-    for(int i = SZ(c) - 1; i >= 0; i--) {
-        cout << c[i];
-    }
-    cout << endl;
+    StringNode ss;
+    String sss;
+    cout << sizeof(ss) << " " << sizeof(sss) << endl;
     system("pause");
     return 0;
 }
