@@ -41,14 +41,34 @@ void SubString(String &Sub, String S, int pos, int len) {
     if(pos + len - 1 > S.length) {
         return ; 
     }
-    for(int i = pos; i < len; i++) {
-        Sub.ch[i - pos + 1] = S.ch[i]; 
+    for(int i = pos; i < pos + len; i++) {
+        Sub.ch[i - pos + 1] = S.ch[i];
     }
     Sub.length = len;
+}
+int IndexString(String a, String b) {
+    int i = 1, la = a.length, lb = b.length;
+    String tmp;
+    while(i < la - lb + 1) {
+        SubString(tmp, a, i, lb);
+        if(StrCompare(tmp, b) != 0) {
+            i++;
+        } else {
+            return i;
+        }
+    }
+    return 0;
+}
+void DisplayString(String S) {
+    for(int i = 1; i <= S.length; i++) {
+        cout << S.ch[i] << " ";
+    }
+    cout << endl;
 }
 int main(void) {
     IOS
     String S1, S2;
+    String S3;
     cin >> n >> m;
     for(int i = 1; i <= n; i++) {
         cin >> qwq;
@@ -60,8 +80,15 @@ int main(void) {
         S2.ch[i] = qwq;
     }
     S2.length = m;
-    int x = StrCompare(S1, S2);
-    cout << x << endl;
+    DisplayString(S1);
+    DisplayString(S2);
+    int x1 = StrCompare(S1, S2);
+    cout << x1 << endl;
+    SubString(S3, S1, 2, 3);
+    DisplayString(S3);
+    cout << S3.length << endl;
+    int x2 = IndexString(S1, S2);
+    cout << x2 << endl;
     system("pause");
     return 0;
 }
