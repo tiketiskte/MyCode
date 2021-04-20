@@ -22,14 +22,14 @@ typedef pair <double, double> PDD;
 
 ll gcd(ll a, ll b) {return b ? gcd(b, a % b) : a;}
 
+typedef struct StringNode {
+    char ch;
+    struct StringNode* next;
+}StringNode, *String;
 int main(void) {
     IOS
-    int n = 5, count = 0;
-    if(1 <= n <= 10) {
-        count++;
-    }
-    cout << count << endl;
-
+    StringNode ss;
+    cout << sizeof(ss) << endl;
     system("pause");
     return 0;
 }
