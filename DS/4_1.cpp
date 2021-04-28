@@ -59,6 +59,21 @@ int IndexString(String a, String b) {
     }
     return 0;
 }
+int Index(String a, String b) {
+    int i = 1, j = 1;
+    while(i <= a.length && j <= b.length) {
+        if(a.ch[i] == b.ch[j]) {
+            i++, j++;
+        } else {
+            i = i - j + 2, j = 1;
+        }
+    }
+    if(j > b.length) {
+        return i - b.length;
+    } else {
+        return -1000;
+    }
+}
 void DisplayString(String S) {
     for(int i = 1; i <= S.length; i++) {
         cout << S.ch[i] << " ";
@@ -80,15 +95,17 @@ int main(void) {
         S2.ch[i] = qwq;
     }
     S2.length = m;
-    DisplayString(S1);
-    DisplayString(S2);
+    // DisplayString(S1);
+    // DisplayString(S2);
     int x1 = StrCompare(S1, S2);
     cout << x1 << endl;
     SubString(S3, S1, 2, 3);
     DisplayString(S3);
-    cout << S3.length << endl;
+    cout << "The S3 length:" << S3.length << endl;
     int x2 = IndexString(S1, S2);
     cout << x2 << endl;
+    int x3 = Index(S1, S2);
+    cout << x3 << endl;
     system("pause");
     return 0;
 }
