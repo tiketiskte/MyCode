@@ -65,10 +65,21 @@ bool Find(sqlist L, int x, int &pos) {
         return true;
     }
 }
+bool Find2(sqlist L, int pos, int &ans) {
+    if(L.length == 0) {
+        return false;
+    } 
+    if(pos < 0 && pos >= L.length) {
+        cout << "Illegal location!" << endl;
+        return false;
+    }
+    ans = L.arr[pos - 1];
+    return true;
+}
 int main(void) {
     IOS
     sqlist L;
-    int ans1, ans2;
+    int ans1, ans2, ans3;
     Init(L);
     print(L);
     Insert(L, 2, 521);
@@ -77,7 +88,9 @@ int main(void) {
     cout << "Delete's answer:" << ans1 << endl;
     print(L);
     Find(L, 105, ans2);
-    cout << "Find's answer:" << ans2 << endl;
+    cout << "Find1's answer:" << ans2 << endl;
+    Find2(L, 2, ans3);
+    cout << "Find1's answer:" << qwq << endl;
     system("pause");
     return 0;
 }
