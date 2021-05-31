@@ -90,7 +90,7 @@ int main(void) {
     Find(L, 105, ans2);
     cout << "Find1's answer:" << ans2 << endl;
     Find2(L, 2, ans3);
-    cout << "Find1's answer:" << qwq << endl;
+    cout << "Find1's answer:" << ans3 << endl;
     system("pause");
     return 0;
 }
