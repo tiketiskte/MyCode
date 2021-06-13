@@ -109,3 +109,15 @@ int main(void) {
     system("pause");
     return 0;
 }
+/*
+Input:
+10 5
+qwqabcdezp
+abcde
+Output:
+16
+w q a
+The S3 length:3
+4
+4
+*/
