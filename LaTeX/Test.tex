@@ -3,6 +3,8 @@
 %勾股定理
 \documentclass[UTF8]{ctexart} %文档类
 
+\usepackage{graphicx}
+\usepackage{float}
 \title{杂谈勾股定理}
 \author{Tiketiskte}
 \date{\today}
@@ -10,6 +12,7 @@
 \bibliographystyle{plain} %声明文献参考格式
 \newtheorem{thm}{定理}
 %以上为导言区(preamble)
+
 \begin{document} %正文 直接输出的部分
 
     \maketitle %输出论文标题
@@ -27,7 +30,7 @@
         \zihao{-5}\kaishu
         勾广三，股修四，径隅五。
     \end{quote}
-    又载陈子（约公元前 7--6 世纪）答荣方问：
+    又载陈子（约公元前 7--6 世纪）答荣方问：%--表示一个小短线 宽度与字母'n'相当
     \begin{quote}
         \zihao{-5}\kaishu
         若求邪至日者，以日下为勾，日高为股，勾股各自乘，并而开方除之，得邪至日。
@@ -39,5 +42,38 @@
 
         可以用符号语言表述为......
     \end{thm}
+    \begin{equation}
+        a(b+c) = ab + ac
+    \end{equation}
+    \begin{equation}
+        \angle ACB = \pi / 2
+    \end{equation}
+    \begin{equation}
+        AB^2 = BC^2 + AC^2.
+    \end{equation}
+    \begin{equation}
+        AB_2 = BC_2 + AC_2;
+    \end{equation}
+    \begin{equation}
+        90^\circ
+    \end{equation}
+    \begin{table}[H]
+        \begin{tabular}{|rrr|}
+            \hline
+            直角边 $a$ & 直角边 $b$ & 斜边 $c$ \\
+            \hline
+                3 & 4 & 5 \\
+                5 & 12 & 13 \\
+            \hline
+        \end{tabular}
+        \qquad
+        ($a^2 + b^2 = c^2$)
+    \end{table}
+    \begin{figure}[ht]
+        \centering
+        %\includegraphics[scale=0.6]{picture.jpg}
+        \caption{这是祢豆子}
+        \label{fig::p1}
+    \end{figure}
     \bibliography{math}
 \end{document}
