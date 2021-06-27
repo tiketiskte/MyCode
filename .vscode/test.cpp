@@ -4,6 +4,7 @@
 **/
 #include <bits/stdc++.h>
 using namespace std;
+#define PI 3.1415926
 #define IOS {ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);}
 #define rep(i, a, n) for(int i = a; i < n; i++)
 #define per(i, a, n) for(int i = n - 1; i >= a; i--)
@@ -22,14 +23,15 @@ typedef pair <double, double> PDD;
 
 ll gcd(ll a, ll b) {return b ? gcd(b, a % b) : a;}
 
-typedef struct StringNode {
-    char ch;
-    struct StringNode* next;
-}StringNode, *String;
+
 int main(void) {
     IOS
-    StringNode ss;
-    cout << sizeof(ss) << endl;
+    double n = (tan(0) + 1/cos(0)) - (tan(-PI/4) + 1/(cos(-PI/4)));
+    double m = (sqrt(2) + 1);
+    double x = (sqrt(2) - 1);
+    cout << n << endl;
+    cout << m << endl;
+    cout << x << endl;
     system("pause");
     return 0;
 }
