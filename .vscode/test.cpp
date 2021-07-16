@@ -4,7 +4,6 @@
 **/
 #include <bits/stdc++.h>
 using namespace std;
-#define PI 3.1415926
 #define IOS {ios::sync_with_stdio(false);cin.tie(0);cout.tie(0);}
 #define rep(i, a, n) for(int i = a; i < n; i++)
 #define per(i, a, n) for(int i = n - 1; i >= a; i--)
@@ -23,15 +22,30 @@ typedef pair <double, double> PDD;
 
 ll gcd(ll a, ll b) {return b ? gcd(b, a % b) : a;}
 
-
+ll l, r, sum;   
+bool check(int x) {
+    while(x) {
+        int i = x % 10;
+        if(i == 4 || i == 7) {
+            return false;
+        }
+    }
+    return true;
+}
+ll get(int x) {
+    // cout << "Funtion 2:" << x + 1 << endl;
+    return x;
+}
 int main(void) {
     IOS
-    double n = (tan(0) + 1/cos(0)) - (tan(-PI/4) + 1/(cos(-PI/4)));
-    double m = (sqrt(2) + 1);
-    double x = (sqrt(2) - 1);
-    cout << n << endl;
-    cout << m << endl;
-    cout << x << endl;
+    cin >> l >> r;
+    for(ll i = l; i <= r; i++) {
+        if(!check(get(i))) {
+            sum += get(i) + 1;
+            cout << sum << endl;
+        }
+    }
+    cout << sum << endl;
     system("pause");
     return 0;
 }
