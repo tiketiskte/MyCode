@@ -22,30 +22,28 @@ typedef pair <double, double> PDD;
 
 ll gcd(ll a, ll b) {return b ? gcd(b, a % b) : a;}
 
-ll l, r, sum;   
-bool check(int x) {
+int f(unsigned int x) {
+    int cnt = 0, c = 0;
+    cout << x << endl;
     while(x) {
-        int i = x % 10;
-        if(i == 4 || i == 7) {
-            return false;
-        }
+        c++, cnt++;
+        cout << cnt << ":" << x << endl;
+        x = x & (x - 1);
     }
-    return true;
-}
-ll get(int x) {
-    // cout << "Funtion 2:" << x + 1 << endl;
-    return x;
+    return c;
 }
 int main(void) {
     IOS
-    cin >> l >> r;
-    for(ll i = l; i <= r; i++) {
-        if(!check(get(i))) {
-            sum += get(i) + 1;
-            cout << sum << endl;
-        }
-    }
-    cout << sum << endl;
+    int x = 2, y, z;
+    x *= (y = z = 5);
+    cout << x << endl;
+    z = 3;
+    x == (y = z);
+    cout << x << endl;
+    x = (y == z);
+    cout << x << endl;
+    x = (y & z);
+    cout << x << endl;
     system("pause");
     return 0;
 }
