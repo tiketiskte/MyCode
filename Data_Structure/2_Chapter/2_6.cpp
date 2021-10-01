@@ -32,9 +32,14 @@ void solve(SqList &L) {
         cout << "error" << endl;
         return ;
     }
-    for(int i = 0; i < L.length; i++) {
-        
+    int black = 1;
+    for(int red = 1; red < L.length; red++) {
+        if(L.data[red] != L.data[red - 1]) {
+            L.data[black] = L.data[red];
+            black++;
+        }
     }
+    L.length = black;
 }
 void PrintList(SqList L) {
     cout << "L's element:" << endl;
@@ -49,9 +54,9 @@ void PrintList(SqList L) {
 int main(void) {
     IOS
     SqList L;
-    int temp[12] = {1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 9, 10};
-    memcpy(L.data, temp, 12 * sizeof(int));
-    L.length = 12;
+    int temp[10] = {2, 2, 3, 3, 3, 5, 6, 6, 6, 7};
+    memcpy(L.data, temp, 10 * sizeof(int));
+    L.length = 10;
     PrintList(L);
     solve(L);
     PrintList(L);
