@@ -4,7 +4,7 @@ typedef unsigned char *byte_pointer;
 void show_bytes(byte_pointer start, size_t len) {
     size_t i;
     for(i = 0; i < len; i++) {
-        printf("%.2x", start[i]);
+        printf(" %.2x", start[i]);
     }
     printf("\n");
 }
@@ -30,6 +30,10 @@ void test_show_bytes(int val) {
 
 int main(void) {
     int x = 12345;
+    // 12345 hex:0x00003039
     test_show_bytes(x);
     system("pause");
 }
+/*
+This code show that the same code runs on different platforms to produce different results
+*/
