@@ -36,6 +36,11 @@ int main(void) {
     const char *s = "abcdef";
     show_bytes((byte_pointer) s, strlen(s));
     printf("%d\n",(int)strlen(s));
+    printf("The different between two's complement and show_integer:\n");
+    short lx= 12345;
+    short int mx = -lx;
+    show_bytes((byte_pointer) &lx, sizeof(short));
+    show_bytes((byte_pointer) &mx, sizeof(short));
     system("pause");
 }
 /*
