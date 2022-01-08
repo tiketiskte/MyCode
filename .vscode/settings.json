@@ -3,6 +3,7 @@
         "--generate-members"
     ],
     "files.associations": {
+        "*.cpp": "cpp",
         "array": "cpp",
         "atomic": "cpp",
         "*.tcc": "cpp",
@@ -73,7 +74,9 @@
         "memory_resource": "cpp",
         "optional": "cpp",
         "set": "cpp",
-        "shared_mutex": "cpp"
+        "shared_mutex": "cpp",
+        "limits.h": "c",
+        "stdlib.h": "c"
     },
     "cSpell.words": [
         "Arial",
