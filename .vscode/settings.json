@@ -76,7 +76,8 @@
         "set": "cpp",
         "shared_mutex": "cpp",
         "limits.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "assert.h": "c"
     },
     "cSpell.words": [
         "Arial",
