@@ -39,12 +39,12 @@ void test_show_bytes(int val) {
     short sval = (short)val;
     long lval = (long)val;
     double dval = (double)val;
-    show_int(val);
-    show_float(fval);
-    show_pointer(pval);
-    show_short(sval);
-    show_long(lval);
-    show_double(dval);
+    show_int(ival); // 16Bit = 2B
+    show_float(fval); // 16Bit = 2B
+    show_pointer(pval); // 32Bit = 4B
+    show_short(sval); // 8Bit = 1B
+    show_long(lval); // 16Bit = 2B
+    show_double(dval); // 32Bit = 4B
 }
 int main(void) {
     int x1 = 12345;
