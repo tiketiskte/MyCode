@@ -10,7 +10,7 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "compilerPath": "D:/MinGW/mingw64/bin/gcc.exe", 
+            "compilerPath": "D:/mingw64/bin/gcc.exe", 
             "cStandard": "c11",
             "cppStandard": "c++17",
             "intelliSenseMode": "gcc-x64"

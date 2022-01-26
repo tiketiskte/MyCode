@@ -25,7 +25,7 @@
             "MIMode": "gdb",
             "windows": {
                 "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
-                "miDebuggerPath": "D:/MinGW/mingw64/bin/gdb.exe" // 修改为本机gdb.exe的路径
+                "miDebuggerPath": "D:/mingw64/bin/gdb.exe" // 修改为本机gdb.exe的路径
             },
             "setupCommands": [
                 {
