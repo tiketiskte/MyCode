@@ -1,12 +1,14 @@
 import torch
-import numpy as np
+in_channels, out_channels = 6, 10
+width, height = 100, 100
+kernel_size = 3
+batch_size = 1
 
+input = torch.randn(in_channels, width, height)
 
-Y = torch.LongTensor([2, 0, 1])
-Y_pred1 = torch.Tensor([[0.1, 0.2, 0.9],
-                        [1.1, 0.1, 0.2],
-                        [0.2, 2.1, 0.1]])
+conv_layer = torch.nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size)
+out_put = conv_layer(input)
 
-criterion = torch.nn.CrossEntropyLoss()
-l1 = criterion(Y_pred1, Y)
-print(torch.max(Y_pred1, dim=1))
+print(input.shape)
+print(out_put.shape)
+print(conv_layer.weight.shape)
