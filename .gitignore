@@ -1,0 +1,12 @@
+# Ignore CSV files
+*.csv
+
+# Ignore TXT files
+*.txt
+
+# Ignore Python bytecode files
+*.pyc
+__pycache__/
+
+# Ignore model training files
+*.ckpt
