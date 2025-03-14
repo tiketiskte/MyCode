@@ -1,0 +1,46 @@
+%%%%% 目录设置
+\ctexset{
+    chapter = {
+        nameformat = {\heiti\zihao{3}},
+        format={\heiti\zihao{3}},
+        number={\zhnum{chapter}},
+        aftername={\enspace},
+        name={第,章},
+        beforeskip=-5pt,
+        afterskip=30pt
+    },
+    section = {
+        % name={,},
+        name={},
+        format={\bfseries\zihao{4}},
+        aftername={\enspace},
+    },
+    subsection = {
+        % name={,},
+        name={},
+        format={\bfseries\zihao{4}},
+        aftername={\enspace}
+    },
+    subsubsection = {
+        % name={,},
+        name={},
+        format={\bfseries\zihao{4}},
+        aftername={\enspace}
+    },
+    contentsname={\centerline{\normalfont\heiti\zihao{3}目\qquad 录}},
+    paragraph={format={\zihao{-4}}}
+}
+
+
+\titlespacing{\section}{0pt}{24pt}{6pt}%设置章节标题间距
+\titlespacing{\subsection}{0pt}{12pt}{6pt}%设置章节标题间距
+\titlespacing{\subsubsection}{0pt}{6pt}{6pt}%设置章节标题间距
+\setcounter{tocdepth}{2}
+
+\dottedcontents{section}[55pt]{}{2.3em}{5pt}
+\dottedcontents{subsection}[70pt]{}{2.3em}{5pt}
+
+%%%%%% 参考文献设置
+\bibpunct{[}{]}{,}{n}{,}{,}
+\bibliographystyle{gbt7714-numerical}
+
