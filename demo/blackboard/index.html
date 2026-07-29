@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>电子黑板</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="toolbar">
+      <h1 class="title">电子黑板</h1>
+      <div class="tools">
+        <div class="tool-group">
+          <label class="tool-label">画笔</label>
+          <input type="range" id="brushSize" min="2" max="40" value="6" title="画笔粗细">
+          <span id="brushSizeLabel" class="size-label">6px</span>
+        </div>
+        <div class="tool-group colors" id="colorPalette"></div>
+        <div class="tool-group">
+          <button id="eraserBtn" class="btn" title="橡皮擦">橡皮擦</button>
+          <button id="undoBtn" class="btn" title="撤销">撤销</button>
+          <button id="clearBtn" class="btn btn-danger" title="清空黑板">清空</button>
+          <button id="exportBtn" class="btn btn-primary" title="导出图片">导出图片</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="board-wrapper">
+      <div class="board-frame">
+        <canvas id="board"></canvas>
+      </div>
+    </main>
+
+    <footer class="hint">鼠标或手指在黑板区域拖动即可绘画 · 支持撤销与 PNG 导出</footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
